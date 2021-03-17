@@ -9,52 +9,80 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="overview.css">
-
 </head>
 
 <body>
     <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-body border-bottom shadow-sm">
-        <p class="h5 my-0 me-md-auto fw-normal">Company name</p>
+        <p class="h5 my-0 me-md-auto fw-normal">Flixbus</p>
         <nav class="my-2 my-md-0 me-md-3">
             <a class="p-2 text-dark" href="#">Features</a>
-            <a class="p-2 text-dark" href="#">Enterprise</a>
             <a class="p-2 text-dark" href="#">Support</a>
-            <a class="p-2 text-dark" href="#">Pricing</a>
         </nav>
-        <a class="btn btn-outline-primary" href="#">Sign up</a>
+        <a class="btn btn-outline-primary" href="#">Abmelden</a>
     </header>
 
     <div class="container">
         <div class="header"> <img src="logo.png" class="img-fluid logo"> </div>
         <article class="main">
+
             <div class="row">
-                <div class="col-sm-4">
-                    <p class="titles text-truncate">Justice League</p>
-                    <p class="published text-truncate">16. November 2017 (Deutschland)</p>
-                    <figure><img src="https://cosmicbook.news/sites/default/files/justice-league-digital-superman.jpg" class="img-fluid" alt="justice-league"></figure>
-                </div>
-                <div class="col-sm-4">
-                    <p class="titles text-truncate">Spider-Man: Far From Home hhhhhhhhhhhhhhhhhhhhh hhhhhhhh</p>
-                    <p class="published text-truncate">4. Juli 2019 (Deutschland)</p>
-                    <figure><img src="https://m.media-amazon.com/images/I/910t9BoIymL._AC_SL1500_.jpg" class="img-fluid" alt="Spider-Man"></figure>
-                </div>
-                <div class="col-sm-4">
-                    <p class="titles text-truncate">X-Men: The New Mutants</p>
-                    <p class="published text-truncate">26. November 2020 (Deutschland)</p>
-                    <figure><img src="https://m.media-amazon.com/images/M/MV5BZDQ2NTdmNDgtMGIwMS00ODE2LTk5M2EtZGZhYzc4MWRlNTU3XkEyXkFqcGdeQXVyNTc4MjczMTM@._V1_.jpg" class="img-fluid " alt="x-men"></figure>
-                </div>
-                <div class="col-sm-4">
-                    <p class="titles text-truncate">Justice League</p>
-                    <figure><img src="https://cosmicbook.news/sites/default/files/justice-league-digital-superman.jpg" class="img-fluid" alt="justice justice-league-digital-superman "></figure>
-                </div>
-                <div class="col-sm-4">
-                    <p class="titles text-truncate">Justice League</p>
-                    <figure><img src="https://cosmicbook.news/sites/default/files/justice-league-digital-superman.jpg" class="img-fluid" alt="justice justice-league-digital-superman "></figure>
-                </div>
-                <div class="col-sm-4">
-                    <p class="titles text-truncate">Justice League</p>
-                    <figure><img src="https://cosmicbook.news/sites/default/files/justice-league-digital-superman.jpg" class="img-fluid" alt="justice justice-league-digital-superman "></figure>
-                </div>
+
+                <?php
+
+                    include('connect-mysql.php');
+        
+                    $sqlget = "SELECT * FROM movie_tab";
+                    $sqldata = mysql_query($dbcon, $sqlget) or die('error');
+        
+                    while($row = $mysqli_query_array($sqldata, MYQSLI_ASSOC)) {
+                        $titel = $row['titel'];
+                        $laufzeit = $row['laufzeit'];
+                        $fsk = $row['fsk'] ; 
+                        $beschreibung = $row['beschreibung']; 
+                        $poster = $row['movie_poster']; 
+                        $release = $row['release_date'] ; 
+
+                        echo '<div class="col-sm-4">';
+                        echo '<p class="titles text-truncate">';
+                        echo $titel;
+                        echo '</p>';
+                        echo '<p class="published text-truncate">';
+                        echo $row['beschreibung'];
+                        echo '</p>';
+                        echo '<figure><img src="'.$row[movie_poster].'">';
+                        echo '</figure>';
+                        echo '<div>'
+                    }
+        
+                    ?>
+
+                    <div class="col-sm-4">
+                        <p class="titles text-truncate">Justice League</p>
+                        <p class="published text-truncate">16. November 2017 (Deutschland)</p>
+                        <figure><img src="https://cosmicbook.news/sites/default/files/justice-league-digital-superman.jpg" class="img-fluid" alt="justice-league"></figure>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="titles text-truncate">Spider-Man: Far From Home hhhhhhhhhhhhhhhhhhhhh hhhhhhhh</p>
+                        <p class="published text-truncate">4. Juli 2019 (Deutschland)</p>
+                        <figure><img src="https://m.media-amazon.com/images/I/910t9BoIymL._AC_SL1500_.jpg" class="img-fluid" alt="Spider-Man"></figure>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="titles text-truncate">X-Men: The New Mutants</p>
+                        <p class="published text-truncate">26. November 2020 (Deutschland)</p>
+                        <figure><img src="https://m.media-amazon.com/images/M/MV5BZDQ2NTdmNDgtMGIwMS00ODE2LTk5M2EtZGZhYzc4MWRlNTU3XkEyXkFqcGdeQXVyNTc4MjczMTM@._V1_.jpg" class="img-fluid " alt="x-men"></figure>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="titles text-truncate">Justice League</p>
+                        <figure><img src="https://cosmicbook.news/sites/default/files/justice-league-digital-superman.jpg" class="img-fluid" alt="justice justice-league-digital-superman "></figure>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="titles text-truncate">Justice League</p>
+                        <figure><img src="https://cosmicbook.news/sites/default/files/justice-league-digital-superman.jpg" class="img-fluid" alt="justice justice-league-digital-superman "></figure>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="titles text-truncate">Justice League</p>
+                        <figure><img src="https://cosmicbook.news/sites/default/files/justice-league-digital-superman.jpg" class="img-fluid" alt="justice justice-league-digital-superman "></figure>
+                    </div>
 
             </div>
         </article>
